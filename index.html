@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Тапалка с заданиями</title>
+</head>
+<body>
+  <h1>Тапалка</h1>
+  <button id="coinBtn">+1 коин</button>
+  <div id="coins">amg coins: 0</div>
+
+  <h2>Задания</h2>
+  <div id="quests"></div>
+
+  <script>
+    let coins = 0;
+    let quests = [
+      { goal: 100, reward: 300, done: false },
+      { goal: 600, reward: 200, done: false },
+      { goal: 800, reward: 300, done: false }
+    ];
+
+    const coinBtn = document.getElementById("coinBtn");
+    const coinsDisplay = document.getElementById("coins");
+    const questsContainer = document.getElementById("quests");
+
+    function renderQuests() {
+      questsContainer.innerHTML = "";
+      quests.forEach((q) => {
+        let questDiv = document.createElement("div");
+        questDiv.style.cursor = "pointer";
+        questDiv.style.margin = "5px";
+        questDiv.textContent = `Достигни ${q.goal} коинов → Награда: ${q.reward}`;
+        questsContainer.appendChild(questDiv);
+      });
+    }
+
+    function checkQuests() {
+      quests.forEach((q) => {
+        if (!q.done && coins >= q.goal) {
+          coins += q.reward;
+          q.done = true;
+          alert(`Задание выполнено! Получено ${q.reward} коинов 🎉`);
+        }
+      });
+      renderQuests();
+    }
+
+    coinBtn.addEventListener("click", () => {
+      coins++;
+      coinsDisplay.textContent = "Коины: " + coins;
+      checkQuests();
+    });
+
+    renderQuests();
+  </script>
+</body>
+</html>
+<head>
+  <meta charset="UTF-8">
+  <title>Тапалка</title>
+  <link rel="stylesheet" href="style.css"> 
+</head>
+
+<h1> подпишитесь на наш канал!</h1>
+<a href="https://t.me/+Ovp7wWs2RDc4Zjk6" class="button">кликабельно</a>
